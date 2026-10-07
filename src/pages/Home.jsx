@@ -1,9 +1,16 @@
+import { useNavigate, useOutletContext } from 'react-router';
 import { DestinationCard } from '../components';
 
-const Home = ({ destinations }) => {
+const Home = () => {
+  const destinations = useOutletContext();
+  const navigate = useNavigate();
+
   const handleSearch = (e) => {
     e.preventDefault();
     // TODO: nach dem Absenden zur Seite /destinations wechseln
+    const query = e.target.elements['destination'].value.trim().toLowerCase();
+
+    navigate(`/destinations/${query}`);
   };
 
   return (
